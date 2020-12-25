@@ -7,7 +7,6 @@ const server = require('http').Server(app)
 app.use(express.json())
 
 const PORT = process.env.PORT || 9999
-let data1 = []
 
 app.get('/', (req, res) => {
     fs.readFile(__dirname + '/static/index.html', (err, data) => {
@@ -16,20 +15,6 @@ app.get('/', (req, res) => {
         }
         res.end(data)
     })
-})
-
-app.get('/hehe', (req, res) => {
-    if (data1) {
-        res.send(`${data1}`)
-    } else {
-        res.send('Ловушка активирована')
-    }
-})
-
-app.post('/hehe', (req, res) => {
-    data1.push(req.body['log'])
-    console.log(data1)
-    res.json({status: 'ok'})
 })
 
 
